@@ -1,58 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useEffect } from 'react';
 
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap';
+import NavbarComponent from './components/NavbarComponent';
+import MedicalDevices from './components/MedicalDevices';
+import LoginForm from './components/auth/LoginForm';
+
+// redux stuff
+import { loadUser } from './redux/actions/authActions';
+import { useAppSelector, useAppDispatch } from './app/hooks';
+import { selectAuth } from './redux/reducers/authReducers';
+
+const App = () => {
+  const auth = useAppSelector(selectAuth);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      {auth.isAuthenticated ? (
+        <>
+          <NavbarComponent />
+          <Container>
+            <MedicalDevices />
+          </Container>
+        </>
+      ) : (
+        <LoginForm />
+      )}
+    </>
   );
-}
+};
 
 export default App;
