@@ -1,7 +1,7 @@
 import { Card, Badge } from 'react-bootstrap';
+import { IModel } from '../types/interfaces';
 
-const DeviceModel = ({ model }: any) => {
-  return (
+const DeviceModel = ({ model }: IModel) =>  (
     <Card border='success' style={{ width: '14rem' }} className="justify-content-md-center m-2">
       <Card.Header>{model.DisplayName}</Card.Header>
       <Card.Body>
@@ -18,6 +18,5 @@ const DeviceModel = ({ model }: any) => {
       </Card.Body>
     </Card>
   );
-};
 
 export default DeviceModel;

@@ -1,5 +1,5 @@
 {
-  "name": "redux-ts",
+  "name": "medical-device",
   "version": "0.1.0",
   "main": "dist/index",
   "typings": "dist/index",

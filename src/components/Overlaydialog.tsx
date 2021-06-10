@@ -1,14 +1,18 @@
-import { useEffect } from 'react';
-import { Button, Modal, Container, Row} from 'react-bootstrap';
+import { useEffect } from "react";
+import { Button, Modal, Container, Row } from "react-bootstrap";
 
 // redux stuff
-import { getModelsData } from '../redux/actions/deviceActions';
-import { useAppSelector, useAppDispatch } from '../app/hooks';
-import { selectDevices } from '../redux/reducers/deviceReducers';
-import DeviceModel from './DeviceModel';
-import { IDevice } from '../types/interfaces';
+import { getModelsData } from "../redux/actions/deviceActions";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { selectDevices } from "../redux/reducers/deviceReducers";
+import DeviceModel from "./DeviceModel";
+import { IDevice } from "../types/interfaces";
 
-const Overlaydialog = ({ modalShow, toggleModalVisibility, device }: IDevice) => {
+const Overlaydialog = ({
+  modalShow,
+  toggleModalVisibility,
+  device,
+}: IDevice) => {
   const medicalDevice = useAppSelector(selectDevices);
   const dispatch = useAppDispatch();
 
@@ -28,7 +32,7 @@ const Overlaydialog = ({ modalShow, toggleModalVisibility, device }: IDevice) =>
           {device.BrandId} Model's Data
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ height: '600px', overflowY: 'scroll' }}>
+      <Modal.Body style={{ height: "600px", overflowY: "scroll" }}>
         <Container fluid>
           <Row className='justify-content-md-center'>
             {medicalDevice.modelsDataIsLoading ? (

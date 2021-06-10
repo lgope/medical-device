@@ -14,7 +14,7 @@ import { selectAuth } from './redux/reducers/authReducers';
 const App = () => {
   const auth = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
-
+  
   useEffect(() => {
     dispatch(loadUser());
   }, []);

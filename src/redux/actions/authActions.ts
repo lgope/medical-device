@@ -1,32 +1,35 @@
-import axios from '../../utils/axios';
-import { login, logout, userLoading } from '../reducers/authReducers';
-import { returnErrors } from './errorActions';
+import axios from "../../utils/axios";
+import { login, logout, userLoading } from "../reducers/authReducers";
+// import { returnErrors } from "./errorActions";
 
-import { IAuthFunction } from '../../types/interfaces';
+import { IAuthFunction } from "../../types/interfaces";
 // Check token & load user
-export const loadUser = () => (dispatch: Function, getState: Function) => {
+export const loadUser = () => (dispatch: Function) => {
   // User loading
-  dispatch(userLoading());
-
+  // dispatch(userLoading());
+  
   axios
-    .get('/login')
-    .then((res: any) => dispatch(login(res.data)))
-    .catch(err => {
+  .get("/login")
+  .then((res) => dispatch(login(res.data)))
+  .catch((err) => {
     //   dispatch(returnErrors(err.response.data, err.response.status));
-    console.log(err)
-    });
+    console.log(err);
+  });
 };
 
 // Login User
 export const loginUser =
-  ({ email, password }: IAuthFunction) =>
-  (dispatch: Function) => {
-      console.log({ email, password })
+({ email, password }: IAuthFunction) =>
+(dispatch: Function) => {
+    dispatch(userLoading());
+    // Request body
+    const body = JSON.stringify({ email, password });
+
     axios
-      .post('/login', { email, password })
-      .then(res => dispatch(login(res.data)))
-      .catch(err => {
-        console.log(err)
+      .post("/login", body)
+      .then((res) => dispatch(login(res.data)))
+      .catch((err) => {
+        console.log(err);
         // dispatch(
         //   returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
         // );

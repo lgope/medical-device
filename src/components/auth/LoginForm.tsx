@@ -2,10 +2,13 @@ import { Fragment, useState, ChangeEvent } from 'react';
 
 // redux stuff
 import { loginUser } from '../../redux/actions/authActions';
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { selectAuth } from '../../redux/reducers/authReducers';
+
 
 const LoginForm = () => {
   const [user, setUser] = useState({ email: '', password: '' });
+  const auth = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
 
   const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +37,7 @@ const LoginForm = () => {
                       <br />
                       <h3 className='login-heading mb-4'>Welcome back!</h3>
                       <form>
+                        {auth.isLoading && <h2>Loading...</h2>}
                         <div className='form-label-group'>
                           <input
                             type='email'

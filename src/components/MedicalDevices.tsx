@@ -16,8 +16,6 @@ const MedicalDevices = () => {
     dispatch(getAvailableMedicalDevices());
   }, [dispatch]);
 
-  console.log({md: medicalDevice.availableDevices})
-
   return (
     <Row className='justify-content-md-center'>
       {medicalDevice.dataIsLoading ? (

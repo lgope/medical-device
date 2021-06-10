@@ -1,13 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { DeviceState } from '../../types/interfaces';
 
-export interface DeviceState {
-  availableDevices: Array<Object>;
-  models: Array<Object>;
-  dataIsLoading: Boolean;
-  modelsDataIsLoading: Boolean;
-  deviceDetail: Object;
-}
+
 
 const initialState: DeviceState = {
   availableDevices: [],

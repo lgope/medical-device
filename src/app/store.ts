@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import authReducers from '../redux/reducers/authReducers';
 import deviceReducers from '../redux/reducers/deviceReducers';
 import errorReducers from '../redux/reducers/errorReducers';
@@ -7,7 +6,6 @@ import errorReducers from '../redux/reducers/errorReducers';
 export const store = configureStore({
   reducer: {
     auth: authReducers,
-    counter: counterReducer,
     device: deviceReducers,
     errors: errorReducers,
   },
